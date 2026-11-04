@@ -11,12 +11,50 @@ box.classList.remove("d-none");
 }
 };
 document.getElementById("contractForm").onsubmit = function (e) {
+e.preventDefault();
+let form = this;
+
+fetch(form.action, {
+method:"POST",
+body: new FormData (form),
+headers:{Accept:"application/json"}
+})
+.then(res=>{
+if(res.ok)
+
+    document.getElementById("sentOk").classList.remove ("d-none");
+form.reset();
+}else{
+
+    document.getElementById("sentFail").classList.remove("d-none");
+}
+})
+.catch(() => {
+    document.getElementById("sentFail").classList.remove("d-none");
+});
+};
+ 
+const h=document.querySelector(".hero"), b=document.querySelector(".navbar-brand"), 
+t=()=>b.classList.toggle("hide",h.getBoundingClientRect().bottom>60); t(); addEventListener("scroll",t);
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+)
 
 
 
